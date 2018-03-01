@@ -20,7 +20,7 @@ var game = {
         {
             question : "",
             answers : [],
-            correctAnswerIndex : -1;
+            correctAnswerIndex : -1,
         },
     ],
 
