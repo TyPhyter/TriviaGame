@@ -35,3 +35,12 @@ ul {
 .answer:active {
     background-color: grey;
 }
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+    text-decoration: line-through;
+}

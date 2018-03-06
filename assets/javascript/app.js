@@ -10,7 +10,7 @@
 //Wait a few seconds, then show the next question.
 
 // * On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
-var secondsPerQuestion = 10;
+var secondsPerQuestion = 30;
 
 var game = {
 
@@ -53,6 +53,10 @@ var game = {
         `);
     },
 
+    updateTime : function() {
+        $("#time-remaining").text(`Time remaining: ${this.timeRemaining}`);
+    },
+
     newGame : function() {
         this.correctAnswers = 0;
         this.incorrectAnswers = 0;
@@ -60,15 +64,14 @@ var game = {
         this.selectedAnswerIndex = -1;
 
         this.questionTimer = setTimeout(function() {
-            //
             this.nextQuestion();
-        }.bind(this), 10000);
+        }.bind(this), secondsPerQuestion*1000);
         
         this.secondsTimer = setInterval(function() {
             if(this.timeRemaining > 0) {
                 this.timeRemaining--;
                 console.log(this.timeRemaining);
-                this.updateDisplay();
+                this.updateTime();
             }
         }.bind(this), 1000);
 
@@ -86,20 +89,52 @@ var game = {
         clearInterval(this.secondsTimer);
 
         this.questionTimer = setTimeout(function() {
-            //
             this.nextQuestion();
-        }.bind(this), 10000);
+        }.bind(this), secondsPerQuestion*1000);
         
         this.secondsTimer = setInterval(function() {
             if(this.timeRemaining > 0) {
                 this.timeRemaining--;
                 console.log(this.timeRemaining);
-                this.updateDisplay();
+                this.updateTime();
             }
         }.bind(this), 1000);
 
         this.updateDisplay();
-    }
+    },
+
+    showAnswer : function() {
+
+        clearTimeout(this.questionTimer);
+        clearInterval(this.secondsTimer);
+
+        $(`li[data-index="${this.questions[this.currentQuestionIndex].correctAnswerIndex}"]`).addClass("correct");
+        if(this.selectedAnswerIndex != this.questions[this.currentQuestionIndex].correctAnswerIndex) {
+            $(`li[data-index="${this.selectedAnswerIndex}"`).addClass("incorrect");
+            this.incorrectAnswers++;
+        } else {
+            this.correctAnswers++;
+        }
+
+        if(this.currentQuestionIndex < this.questions.length-1){
+            setTimeout(this.nextQuestion.bind(this), 3000);
+        } else {
+            setTimeout(this.endScreen.bind(this), 3000);
+        }
+    },
+
+    endScreen : function () {
+        $("#play-area").html(`
+            <h1 class="title">TRIVIA TITLE</h1>
+            <div class="answers-correct">Correct Answers: ${this.correctAnswers}</div>
+            <div class="answers-incorrect">Incorrect Answers: ${this.incorrectAnswers}</div>
+            <button class="new-game">Try Again?</button>
+        `);
+
+        $("button.new-game").on("click", function(){
+            game.newGame();
+        });
+    },
 
 }
 
@@ -110,9 +145,9 @@ $(document).on("click", ".answer", function() {
     } else {
         console.log("wrong!");
     } 
-    if(game.currentQuestionIndex < game.questions.length-1){
-        game.nextQuestion();
-    }
+
+    game.showAnswer();
+    
 });
 
 game.newGame();
