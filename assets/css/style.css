@@ -1,0 +1,37 @@
+#play-area {
+    background-color: grey;
+    width: 85vw;
+    height: 90vh;
+    margin: 40px auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.title {
+    font-size: 40px;
+    margin: 20px auto;
+    font-weight: bold;
+}
+
+.list-container {
+    width: 70%;
+    margin: 40px auto;
+    text-align: left;
+}
+ul {
+
+}
+
+.answer {
+    background-color: aliceblue;
+}
+.answer:hover {
+    background-color: cyan;
+}
+.answer:active {
+    background-color: grey;
+}
