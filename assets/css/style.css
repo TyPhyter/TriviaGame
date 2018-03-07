@@ -4,6 +4,10 @@
 font-family: 'Russo One', sans-serif; */
 
 body {
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     font-family: 'Russo One', sans-serif;
     background-image: url("../images/earth_space_bg.jpg");
     background-attachment: fixed;

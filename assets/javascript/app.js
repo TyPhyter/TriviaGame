@@ -25,19 +25,19 @@ var game = {
 
     questions : [
         {
-            question : "The primary villains in the show, _______ is the name for the robots that threaten the human race",
+            question : "The primary villains in the show, _______ is the name for the robots that threaten the human race:",
             answers : ["Pylons", "Cylons", "Nylons", "Cyclones"],
             correctAnswerIndex : 1,
         },
 
         {
-            question : "This character from NBC's 'The Office' has a particular obsession with Battlestar Galactica",
+            question : "This character from NBC's 'The Office' has a particular obsession with Battlestar Galactica:",
             answers : ["Kelly", "Andy", "Dwight", "Toby"],
             correctAnswerIndex : 2,
         },
 
         {
-            question : "Hebrew for 'ground' or 'earth', _______ is the surname of three of the show's most important characters.",
+            question : "Hebrew for 'ground' or 'earth', _______ is the surname of three of the show's most important characters:",
             answers : ["Adama", "Baltar", "Bacalta", "Tigh"],
             correctAnswerIndex : 0,
         },
@@ -61,7 +61,7 @@ var game = {
         },
 
         {
-            question : "Repeated throughout the series, this affirmative phrase was originally ad-libbed in the first episode by Edward James Olmos",
+            question : "Repeated throughout the series, this affirmative phrase was originally ad-libbed in the first episode by Edward James Olmos:",
             answers : ["Bangarang", "You're Darn Tootin'", "Long Live Charlie Sheen", "So Say We All"],
             correctAnswerIndex : 3,
         },
@@ -73,13 +73,13 @@ var game = {
         },
 
         {
-            question : "According to Number 6, how many humainoid Cylons are there?",
+            question : "According to Number 6, how many humanoid Cylons are there?",
             answers : ["3", "5", "12", "42"],
             correctAnswerIndex : 2,
         },
 
         {
-            question : "Named after a famous equine, the discovery of this ship revealed that the Galactica was not the only remaining Battlestar",
+            question : "Named after a famous equine, the discovery of this ship revealed that the Galactica was not the only remaining Battlestar:",
             answers : ["Pegasus", "Black Beauty", "Seabiscuit", "Silver"],
             correctAnswerIndex : 0,
         },
