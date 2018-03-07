@@ -10,7 +10,7 @@
 //Wait a few seconds, then show the next question.
 
 // * On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
-var secondsPerQuestion = 30;
+var secondsPerQuestion = 10;
 
 var game = {
 
@@ -25,21 +25,70 @@ var game = {
 
     questions : [
         {
-            question : "Question Text",
-            answers : ["wrong", "right", "wrong", "wrong"],
+            question : "The primary villains in the show, _______ is the name for the robots that threaten the human race",
+            answers : ["Pylons", "Cylons", "Nylons", "Cyclones"],
             correctAnswerIndex : 1,
         },
 
         {
-            question : "Another Question Text",
-            answers : ["wrong", "wrong", "wrong", "right"],
+            question : "This character from NBC's 'The Office' has a particular obsession with Battlestar Galactica",
+            answers : ["Kelly", "Andy", "Dwight", "Toby"],
+            correctAnswerIndex : 2,
+        },
+
+        {
+            question : "Hebrew for 'ground' or 'earth', _______ is the surname of three of the show's most important characters.",
+            answers : ["Adama", "Baltar", "Bacalta", "Tigh"],
+            correctAnswerIndex : 0,
+        },
+
+        {
+            question : "Played by Katee Sackhoff in the reboot, this character was originally cast as a male:",
+            answers : ["Helo", "Gaius Baltar", "Starbuck", "Apollo"],
+            correctAnswerIndex : 2,
+        },
+
+        {
+            question : "Described as a card game like poker in the original, _______ was a team sport combining basketball, squash, and lacrosse:",
+            answers : ["Octogon", "Square", "Triad", "Pyramid"],
             correctAnswerIndex : 3,
         },
+
+        {
+            question : "In the classic series the Cylons were created by a reptilian race. In the reboot, however, they were created by:",
+            answers : ["The Gods", "Humans", "A nuclear bomb", "Google"],
+            correctAnswerIndex : 1,
+        },
+
+        {
+            question : "Repeated throughout the series, this affirmative phrase was originally ad-libbed in the first episode by Edward James Olmos",
+            answers : ["Bangarang", "You're Darn Tootin'", "Long Live Charlie Sheen", "So Say We All"],
+            correctAnswerIndex : 3,
+        },
+
+        {
+            question : "Homophonic with a controversial oil drilling method, this word served as the sensor-safe expletive in the original and the reboot:",
+            answers : ["Smelt", "Mine", "Frak", "Jack"],
+            correctAnswerIndex : 2,
+        },
+
+        {
+            question : "According to Number 6, how many humainoid Cylons are there?",
+            answers : ["3", "5", "12", "42"],
+            correctAnswerIndex : 2,
+        },
+
+        {
+            question : "Named after a famous equine, the discovery of this ship revealed that the Galactica was not the only remaining Battlestar",
+            answers : ["Pegasus", "Black Beauty", "Seabiscuit", "Silver"],
+            correctAnswerIndex : 0,
+        },
+
     ],
 
     updateDisplay : function() {
         $("#play-area").html(`
-            <h1 class="title">TRIVIA TITLE</h1>
+            <img class="title" src="assets/images/battlestar_galactica_logo.png">
             <div id="time-remaining">Time remaining: ${this.timeRemaining}</div>
             <div id="question-text">${this.questions[this.currentQuestionIndex].question}</div>
             <div class="list-container">
@@ -62,10 +111,6 @@ var game = {
         this.incorrectAnswers = 0;
         this.currentQuestionIndex = 0;
         this.selectedAnswerIndex = -1;
-
-        this.questionTimer = setTimeout(function() {
-            this.nextQuestion();
-        }.bind(this), secondsPerQuestion*1000);
         
         this.secondsTimer = setInterval(function() {
             if(this.timeRemaining > 0) {
@@ -74,6 +119,10 @@ var game = {
                 this.updateTime();
             }
         }.bind(this), 1000);
+
+        this.questionTimer = setTimeout(function() {
+            this.showAnswer();
+        }.bind(this), secondsPerQuestion*1000);
 
         this.updateDisplay();
         
@@ -87,10 +136,6 @@ var game = {
 
         clearTimeout(this.questionTimer);
         clearInterval(this.secondsTimer);
-
-        this.questionTimer = setTimeout(function() {
-            this.nextQuestion();
-        }.bind(this), secondsPerQuestion*1000);
         
         this.secondsTimer = setInterval(function() {
             if(this.timeRemaining > 0) {
@@ -99,6 +144,10 @@ var game = {
                 this.updateTime();
             }
         }.bind(this), 1000);
+
+        this.questionTimer = setTimeout(function() {
+            this.showAnswer();
+        }.bind(this), secondsPerQuestion*1000);
 
         this.updateDisplay();
     },
@@ -125,7 +174,7 @@ var game = {
 
     endScreen : function () {
         $("#play-area").html(`
-            <h1 class="title">TRIVIA TITLE</h1>
+            <img class="title" src="assets/images/battlestar_galactica_logo.png">
             <div class="answers-correct">Correct Answers: ${this.correctAnswers}</div>
             <div class="answers-incorrect">Incorrect Answers: ${this.incorrectAnswers}</div>
             <button class="new-game">Try Again?</button>
